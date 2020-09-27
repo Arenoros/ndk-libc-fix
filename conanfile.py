@@ -3,7 +3,7 @@ from conans import ConanFile, CMake, tools
 
 
 class NdkLibcFixConan(ConanFile):
-    name = "ndk-lib-fix"
+    name = "ndk-libc-fix"
     version = "0.1"
     description = "Add glob.c and crypt.c from freebsd"
     license = "BSD License"
@@ -40,4 +40,6 @@ class NdkLibcFixConan(ConanFile):
     def package(self):
         cmake = self._configure_cmake()
         cmake.install()
-
+        
+    def package_info(self):
+        self.cpp_info.libs = tools.collect_libs(self)
